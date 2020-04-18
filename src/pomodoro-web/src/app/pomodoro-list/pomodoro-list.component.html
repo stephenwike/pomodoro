@@ -1,0 +1,79 @@
+<div class='list-container'>
+
+  <!--Calendar Nav-->
+  <mat-grid-list cols="9" rowHeight="40px">
+    <mat-grid-tile [colspan]=1>
+      <button mat-icon-button (click)=RewindDate()>
+        <mat-icon>keyboard_arrow_left</mat-icon>
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]=7>
+      {{ startDate | date : 'shortDate' : '-0600' }} - {{ endDate | date : 'shortDate' }}
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]=1>
+      <button mat-icon-button (click)=ForwardDate()>
+        <mat-icon>keyboard_arrow_right</mat-icon>
+      </button>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <!-- Pomodoro List Table -->  
+  <table mat-table
+    [dataSource]="dataSource" multiTemplateDataRows
+    class="mat-elevation-z8">
+
+    <!-- Columns -->   
+    <ng-container matColumnDef="number">
+      <th mat-header-cell *matHeaderCellDef> # </th>
+      <td mat-cell *matCellDef="let item"> {{ item.listNumber }} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="task">
+      <th mat-header-cell *matHeaderCellDef> Task </th>
+      <td mat-cell *matCellDef="let item">{{ item.task }}</td>
+    </ng-container>
+
+    <!-- Expanded Content -->    
+    <ng-container matColumnDef="expandedDetail">
+      <td mat-cell *matCellDef="let item" [attr.colspan]="columnsToDisplay.length">
+        <div class="element-detail"
+          [@detailExpand]="item == expandedElement ? 'expanded' : 'collapsed'">
+
+            <div class=expand-container>
+              <div class=expand-timestamp>
+                <div class='timestamp'>{{ item.created | date : 'short' }}</div>
+              </div>
+              <div class=expand-data>
+                <app-pomodoro-attributes
+                  [project]=item.project
+                  [tasktype]=item.tasktype
+                  [code]=item.code
+                  (projectChanged)=OnProjectUpdated(dataSource.data.indexOf(item),$event)
+                  (tasktypeChanged)=OnTaskTypeUpdated(dataSource.data.indexOf(item),$event)
+                  (codeChanged)=OnCodeUpdated(dataSource.data.indexOf(item),$event)>
+                </app-pomodoro-attributes>
+              </div>
+              <div class=expand-action>
+                <button mat-icon-button 
+                  (click)=CommitChanges(dataSource.data.indexOf(item))
+                  [disabled]=!HasChanges(dataSource.data.indexOf(item))
+                  color="primary">
+                  <mat-icon>update</mat-icon>
+                </button>
+              </div>
+            </div>
+
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let item; columns: columnsToDisplay;"
+      class="element-row"
+      [class.example-expanded-row]="expandedElement === item"
+      (click)="expandedElement = expandedElement === item ? null : item">
+    </tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+  </table>
+
+</div>

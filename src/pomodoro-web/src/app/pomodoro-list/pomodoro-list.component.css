@@ -1,0 +1,89 @@
+table {
+    width: 95%;
+    margin: auto;
+  }
+
+.tasklabel, .tasktypelabel, .projectlabel, .codelabel, .timestamplabel {
+    font-size: 12px;
+    width: 10%;
+    padding: 0;
+    margin: 0;
+}
+
+.tasklabel {
+    width: 50%;
+}
+
+.timestamplabel {
+    width: 20%;
+}
+
+table {
+    width: 100%;
+  }
+
+tr.detail-row {
+  height: 0;
+}
+  
+tr.element-row:not(.expanded-row):hover {
+  background: whitesmoke;
+}
+  
+tr.element-row:not(.expanded-row):active {
+  background: #efefef;
+}
+  
+.element-row td {
+  border-bottom-width: 0;
+}
+
+.element-detail {
+  overflow: hidden;
+  display: flex;
+}
+  
+.element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+  
+.element-description {
+  padding: 16px;
+}
+  
+.timestamp {
+  opacity: 0.5;
+}
+
+mat-grid-list {
+  width: 100%;
+}
+
+mat-form-field {
+  width: 95%;
+}
+
+app-pomodoro-attributes {
+  width: 100%;
+}
+
+.expand-container {
+  width:100%;
+}
+
+.expand-timestamp {
+  height: 20px;
+  text-align: center;
+  font-size: 11px;
+}
+.expand-data {
+  float: left;
+  width: 90%;
+}
+
+.expand-action {
+  padding-top: 8px;
+  float: left;
+}

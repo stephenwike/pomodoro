@@ -1,0 +1,34 @@
+<div class='subtable'>
+<mat-grid-list cols="3" rowHeight="70px">
+    <mat-grid-tile [colspan]=1>
+        <mat-form-field class="input-full-width" appearance="fill">
+            <mat-label>Task Type</mat-label>
+            <mat-select [(value)]=tasktype (selectionChange)=OnTaskTypeChanged()>
+                <mat-option *ngFor="let item of tasktypes" [value]="item.tasktype">
+                  {{ item.tasktype }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]=1>
+        <mat-form-field class="input-full-width" appearance="fill">
+            <mat-label>Project</mat-label>
+            <mat-select [(value)]=project (selectionChange)=OnProjectChanged()>
+                <mat-option *ngFor="let item of projects" [value]="item.project">
+                  {{ item.project }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]=1>
+        <mat-form-field class="input-full-width" appearance="fill">
+            <mat-label>Code</mat-label>
+            <mat-select [(value)]=code (selectionChange)=OnCodeChanged()>
+                <mat-option *ngFor="let item of codes" [value]="item.code">
+                  {{ item.code }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </mat-grid-tile>
+</mat-grid-list>
+</div>

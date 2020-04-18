@@ -1,0 +1,28 @@
+.web-container {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    width: 900px;
+}
+
+.header {
+    width: 100%;
+    padding: 15px 0;
+    font-size: 28px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.timer-panel {
+    width: 100%;
+}
+
+.list-panel {
+    width: 50%;
+    float: left;
+}
+
+.statistics-panel {
+    float: left;
+    width: 50%;
+}
