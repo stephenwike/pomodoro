@@ -7,10 +7,13 @@
 
 .header {
     width: 100%;
-    padding: 15px 0;
+    padding: 20px 0;
     font-size: 28px;
     text-align: center;
-    font-weight: bold;
+    background-color: #8bcee0;
+    font-family: Tahoma, Geneva, sans-serif;
+    font-kerning: auto;
+    border-radius: 25px;
 }
 
 .timer-panel {

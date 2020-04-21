@@ -2,8 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange
 import { PomodoroService } from '../pomodoro.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { PomodoroEntity } from '../entities/pomodoro.entity';
-import { DataSource } from '@angular/cdk/table';
 import { MatTableDataSource } from '@angular/material/table';
+import { StatisticsModel } from '../entities/statistics.model';
 
 @Component({
   selector: 'app-pomodoro-list',
@@ -20,6 +20,8 @@ import { MatTableDataSource } from '@angular/material/table';
 export class PomodoroListComponent implements OnInit, OnChanges {
 
   @Input() pomodoroList: PomodoroEntity[];
+  @Output() listFiltered: EventEmitter<StatisticsModel> 
+    = new EventEmitter<StatisticsModel>();
   
   columnsToDisplay = ['number', 'task'];
   expandedElement: PomodoroEntity | null;
@@ -29,11 +31,14 @@ export class PomodoroListComponent implements OnInit, OnChanges {
   startDate: number;
   endDate: number;
 
-  constructor(private service: PomodoroService, private changeDetectorRefs: ChangeDetectorRef) { }
+  constructor(private service: PomodoroService) { }
 
   ngOnInit(): void {
     // Get previous sunday
-    let now = new Date(Date.now());
+    
+    //let now = new Date(Date.now());
+    let now = new Date('1/29/20, 7:13 AM');//temporary TODO: Remove this
+    
     let date = now.getDate();
     let day = now.getDay();
     now.setHours(0);
@@ -61,7 +66,7 @@ export class PomodoroListComponent implements OnInit, OnChanges {
 
     let filtered = data.filter(values => { 
       let created = new Date(values.created).valueOf();
-      console.log(`Created: ${created}, Start: ${this.startDate}, End: ${this.endDate}`);
+      //console.log(`Created: ${created}, Start: ${this.startDate}, End: ${this.endDate}`);
       return (created > this.startDate && created < this.endDate)
     });
 
@@ -77,6 +82,14 @@ export class PomodoroListComponent implements OnInit, OnChanges {
     })
 
     console.log(`Returning ${filtered.length} pomodoros.`);
+
+    // Emit changes for statistics
+    let statsModel = new StatisticsModel();
+    statsModel.pomodoros = filtered;
+    statsModel.beginDate = this.startDate;
+    statsModel.endDate = this.endDate;
+    this.listFiltered.emit(statsModel);
+
     return filtered;
   }
 

@@ -10,19 +10,13 @@ import { TaskTypeEntity } from './entities/tasktype.entity';
   providedIn: 'root'
 })
 export class PomodoroService {
-  baseUrl: string = 'http://localhost:8080/pomodoro';
+  baseUrl: string = 'http://fireshellstudio.us:8002/pomodoro';
 
   constructor(private http: HttpClient) { }
 
   GetPomodoros(): Observable<PomodoroEntity[]> {
     return this.http.get<PomodoroEntity[]>(this.baseUrl);
   }
-
-  // GetPomodorosInRange(startDate: number, endDate: number): Observable<PomodoroEntity[]> {
-  //   let data = { "startDate" : startDate, "endDate" : endDate };
-  //   let params = new URLSearchParams();
-  //   return this.http.get<PomodoroEntity[]>(this.baseUrl);
-  // }
 
   GetProjects(): Observable<ProjectEntity[]> {
     return this.http.get<ProjectEntity[]>(this.baseUrl + '/projects');

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PomodoroService } from './pomodoro.service';
 import { PomodoroEntity } from './entities/pomodoro.entity';
+import { StatisticsModel } from './entities/statistics.model';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,7 @@ import { PomodoroEntity } from './entities/pomodoro.entity';
 export class AppComponent implements OnInit {
 
   pomodoroList: PomodoroEntity[];
+  statisticsModel: StatisticsModel;
 
   constructor(private service: PomodoroService) {}
 
@@ -26,5 +28,9 @@ export class AppComponent implements OnInit {
   onPomodoroAdded(pomodoro: PomodoroEntity) {
     console.log("App Component handling pomodoro added!");
     this.pomodoroList = this.pomodoroList.concat([pomodoro]);
+  }
+
+  onListFiltered(statsModel: StatisticsModel) {
+    this.statisticsModel = statsModel;
   }
 }

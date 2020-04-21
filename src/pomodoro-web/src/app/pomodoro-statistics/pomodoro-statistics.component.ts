@@ -1,12 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { single } from './data';
+import { StatisticsModel } from '../entities/statistics.model';
 
 @Component({
   selector: 'app-pomodoro-statistics',
   templateUrl: './pomodoro-statistics.component.html',
   styleUrls: ['./pomodoro-statistics.component.css']
 })
-export class PomodoroStatisticsComponent implements OnInit {
+export class PomodoroStatisticsComponent {
+
+  @Input() statisticsModel: StatisticsModel;
 
   single: any[];
   view: any[] = [500, 400];
@@ -21,9 +24,6 @@ export class PomodoroStatisticsComponent implements OnInit {
 
   constructor() {
     Object.assign(this, { single });
-  }
-
-  ngOnInit(): void {
   }
 
   onSelect(event) {

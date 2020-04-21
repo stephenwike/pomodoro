@@ -3,10 +3,10 @@
 }
 
 .timer-clock {
-    background: rgba(0,0,0,0.25);
+    background: rgba(0,0,0,0.15);
     padding: 12px 80px;
     border: black 1px solid;
-    color: orangered;
+    color: #41e05e;
     width: 50%;
     font-size: 40px;
     font-weight: bold;

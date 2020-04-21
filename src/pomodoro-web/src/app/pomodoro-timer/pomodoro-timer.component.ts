@@ -19,7 +19,7 @@ export class PomodoroTimerComponent implements OnInit {
   timerStarted;
   timeLeft = 25 * 60 * 1000;
   timePassed = 0;
-  timerIncrement = 2 * 1000;//25 * 60 * 1000;
+  timerIncrement = 25 * 60 * 1000;
   timerRead;
   timerDataForm;
 
@@ -60,6 +60,7 @@ export class PomodoroTimerComponent implements OnInit {
       } else {
         this.commitPomodoro();
         this.stopTimer();
+        this.playAlarm();
       }
     },300);
   }
@@ -93,6 +94,14 @@ export class PomodoroTimerComponent implements OnInit {
     this.pomodoroAdded.emit(pomodoro);
   }
 
+  playAlarm(){
+    console.log("Going to play alarm now.");
+    let audio = new Audio();
+    audio.src = "../assets/audio/alarm.mp3";
+    audio.load();
+    audio.play();
+  }
+  
   validateStartButton() {
     return (this.task);
   }

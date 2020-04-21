@@ -61,6 +61,10 @@ mat-grid-list {
   width: 100%;
 }
 
+.mat-cell {
+  padding: 0 12px 0 0;
+}
+
 mat-form-field {
   width: 95%;
 }
