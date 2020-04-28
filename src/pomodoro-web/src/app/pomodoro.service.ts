@@ -11,7 +11,6 @@ import { TaskTypeEntity } from './entities/tasktype.entity';
 })
 export class PomodoroService {
   baseUrl: string = 'http://fireshellstudio.us:8002/pomodoro';
-
   constructor(private http: HttpClient) { }
 
   GetPomodoros(): Observable<PomodoroEntity[]> {

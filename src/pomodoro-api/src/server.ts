@@ -5,7 +5,7 @@ import { Logger } from '@overnightjs/logger';
 import * as http from 'http';
 
 class ExampleServer extends Server {
-    private readonly SERVER_STARTED = 'Example server started on port: ';
+    private readonly SERVER_STARTED = 'Server started on port: ';
     private httpServer: http.Server;
 
     constructor() {
@@ -29,20 +29,22 @@ class ExampleServer extends Server {
 
     cors = function (req, res, next) {
         var whitelist = [
+            'http://localhost',
             'http://localhost:4200',
-            'http://localhost:35791',
-            'http://fireshellstudio.com:4200',
-            'http://fireshellstudio.com:35791',
-            'http://fireshellstudio.com:57913',
-            'http://fireshellstudio.com:4200',
-            'http://fireshellstudio.com',
-            'http://fireshellstudio.com:80',
-            "http://fireshellstudio.com:2648"
+            'http://localhost:8002',
+            'http://localhost:8003',
+            'http://fireshellstudio.us',
+            'http://fireshellstudio.us:8002',
+            'http://fireshellstudio.us:8003',
+            'http://pomodoro-api',
+            'http://pomodoro-api:8002',
+            'http://pomodoro-api:8003'
         ];
         var origin = req.headers.origin;
-        if (whitelist.indexOf(origin) > -1) {
-            res.setHeader('Access-Control-Allow-Origin', origin);
-        }
+        // if (whitelist.indexOf(origin) > -1) {
+        //     res.setHeader('Access-Control-Allow-Origin', origin);
+        // }
+        res.setHeader('Access-Control-Allow-Origin', '*');
         res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
         res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization');
         next();
