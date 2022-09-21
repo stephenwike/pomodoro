@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PomodoroService } from './pomodoro.service';
+import { PomodoroService } from './services/pomodoro.service';
 import { PomodoroEntity } from './entities/pomodoro.entity';
 import { StatisticsModel } from './entities/statistics.model';
 
@@ -16,11 +16,12 @@ export class AppComponent implements OnInit {
   constructor(private service: PomodoroService) {}
 
   ngOnInit(): void {
-    this.GetPomodoros();
+    let options = [];
+    this.GetPomodoros(options);
   }
 
-  GetPomodoros() {
-    this.service.GetPomodoros().subscribe(data => {
+  GetPomodoros(options) {
+    this.service.GetPomodoros(options).subscribe(data => {
       this.pomodoroList = data;
     });
   }

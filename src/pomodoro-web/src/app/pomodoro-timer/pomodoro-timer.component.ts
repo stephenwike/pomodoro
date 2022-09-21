@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { PomodoroService } from '../pomodoro.service';
+import { PomodoroService } from '../services/pomodoro.service';
 import { PomodoroEntity } from '../entities/pomodoro.entity';
 
 @Component({

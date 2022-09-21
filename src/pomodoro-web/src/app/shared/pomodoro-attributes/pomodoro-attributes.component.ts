@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { PomodoroService } from 'src/app/pomodoro.service';
-import { CodeEntity } from 'src/app/entities/code.entity';
-import { TaskTypeEntity } from 'src/app/entities/tasktype.entity';
-import { ProjectEntity } from 'src/app/entities/project.entity';
+import { PomodoroService } from '../../services/pomodoro.service';
+import { CodeEntity } from '../../entities/code.entity';
+import { TaskTypeEntity } from '../../entities/tasktype.entity';
+import { ProjectEntity } from '../../entities/project.entity';
 
 @Component({
   selector: 'app-pomodoro-attributes',

@@ -10,7 +10,7 @@ const pool = new Pool({
     database: 'pomodoro',
     password: 'pass',
     port: 5432,
-  })
+});
 
 export class PomodoroService {
 

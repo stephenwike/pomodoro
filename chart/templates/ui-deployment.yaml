@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.ui }}
+  labels:
+    component: {{ .Values.ui }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: {{ .Values.ui }}
+  template:
+    metadata:
+      name: {{ .Values.ui }}
+      labels:
+        component: {{ .Values.ui }}
+    spec:
+      imagePullSecrets:
+      - name: docker-registry-secret
+      containers:
+      - name: {{ .Values.ui }}
+        imagePullPolicy: Always
+        image: stephenwike/{{ .Values.ui }}:latest
+        ports:
+        - containerPort: 80

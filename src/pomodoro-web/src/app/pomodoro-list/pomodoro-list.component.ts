@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
-import { PomodoroService } from '../pomodoro.service';
+import { PomodoroService } from '../services/pomodoro.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { PomodoroEntity } from '../entities/pomodoro.entity';
 import { MatTableDataSource } from '@angular/material/table';
@@ -36,8 +36,8 @@ export class PomodoroListComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     // Get previous sunday
     
-    //let now = new Date(Date.now());
-    let now = new Date('1/29/20, 7:13 AM');//temporary TODO: Remove this
+    let now = new Date(Date.now());
+    //let now = new Date('1/29/20, 7:13 AM');//temporary TODO: Remove this
     
     let date = now.getDate();
     let day = now.getDay();

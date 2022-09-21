@@ -1,0 +1,17 @@
+persistence:
+  create: true
+  migrate: true
+  database: pomodoro
+  type: PostgreSQL
+  host: data.fireshellstudio.com
+  user: admin
+  password: pass
+  port: 5432
+  sslmode: disable
+  
+name: pomodoro-service
+webapi: pomodoro-webapi
+ui: pomodoro-ui
+ingress: pomodoro-ingress
+secret: pomodoro-service-secrets
+migration: pomodoro-migration

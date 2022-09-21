@@ -1,16 +1,19 @@
-<div class="app-accent"></div>
-
 <div class='web-container'>
+  
   <div class='header'>Pomodoro Manager</div>
+
   <div class='timer-panel'>
     <app-pomodoro-timer (pomodoroAdded)=onPomodoroAdded($event)></app-pomodoro-timer>
   </div>
+
   <div class='list-panel'>
     <app-pomodoro-list 
       [pomodoroList]=pomodoroList
       (listFiltered)=onListFiltered($event)></app-pomodoro-list>
   </div>
+
   <div class='statistics-panel'>
     <app-pomodoro-statistics [statisticsModel]=statisticsModel></app-pomodoro-statistics>
   </div>
+
 </div>

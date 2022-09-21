@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.webapi }}
+  labels:
+    component: {{ .Values.webapi }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: {{ .Values.webapi }}
+  template:
+    metadata:
+      name: {{ .Values.webapi }}
+      labels:
+        component: {{ .Values.webapi }}
+    spec:
+      imagePullSecrets:
+      - name: docker-registry-secret
+      containers:
+      - name: {{ .Values.webapi }}
+        imagePullPolicy: Always
+        image: stephenwike/{{ .Values.webapi }}:latest
+        ports:
+        - containerPort: 80
+        volumeMounts: 
+        - name: secret-volume
+          mountPath: /secrets
+          readOnly: true
+      volumes:
+      - name: secret-volume
+        secret: 
+          secretName: {{ .Values.secret }}
